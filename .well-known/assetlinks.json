@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rsm.eztrivia",
+      "sha256_cert_fingerprints": [
+        "C7:95:FE:76:2A:16:A2:42:2C:55:12:5F:BE:64:42:88:7D:1F:58:81:BB:AC:6F:0D:09:22:AA:E9:69:AA:C4:BD"
+      ]
+    }
+  }
+]
