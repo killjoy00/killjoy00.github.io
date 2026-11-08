@@ -1,0 +1,66 @@
+name: Sync Hollywood site to GitHub Pages
+on:
+  schedule:
+    - cron: '37 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-hollywood.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  sync:
+    name: Mirror tested Hollywood source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out existing Pages site
+        uses: actions/checkout@v4
+      - name: Check out Hollywood source
+        uses: actions/checkout@v4
+        with:
+          repository: killjoy00/Hollywood
+          ref: main
+          path: _hollywood_source
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate the source before publishing
+        run: cd _hollywood_source && npm run check
+      - name: Copy only Hollywood site assets
+        id: sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf Hollywood
+          mkdir -p Hollywood/src
+          cp _hollywood_source/index.html _hollywood_source/styles.css _hollywood_source/favicon.svg Hollywood/
+          cp _hollywood_source/src/app.js _hollywood_source/src/data.js _hollywood_source/src/engine.js Hollywood/src/
+          git add -A -- Hollywood
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Published assets already match Hollywood/main"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit site changes
+        if: steps.sync.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Sync Hollywood Pages from Hollywood/main"
+          git push
+      - name: Explicitly request Pages build
+        # A commit made with GITHUB_TOKEN does not itself trigger a Pages build.
+        if: steps.sync.outputs.changed == 'true' || github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" --jq '.status'
