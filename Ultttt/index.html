@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ultimate Tic/Tac/Toe for iPhone: nine boards, three ways to play, Game Center, replays, stats and one big win.">
+  <meta name="theme-color" content="#0b1523">
+  <title>Ultimate Tic/Tac/Toe — iPhone board game</title>
+  <style>
+    :root{color-scheme:dark;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f1f8fa;background:#0b1523}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 80% -8%,#244861,transparent 54%),radial-gradient(ellipse at 0% 100%,#253c4b,transparent 62%),#0b1523}
+    main{width:min(780px,100%);margin:0 auto;padding:clamp(32px,7vw,80px) 24px 60px}
+    .label{font-size:.77rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#8cece5}
+    h1{margin:17px 0 12px;font-size:clamp(2.9rem,8vw,5rem);letter-spacing:-.065em;line-height:1}
+    h1 em{color:#85e1df;font-style:normal}
+    p{max-width:620px;color:#b8d0d9;line-height:1.75;font-size:1.07rem}
+    .lead{font-size:clamp(1.2rem,3vw,1.4rem);color:#edf7f8}
+    .board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(330px,70vw);margin:34px 0;padding:12px;border-radius:22px;background:#21394d;border:1px solid #466277;box-shadow:0 20px 50px #0005}
+    .tile{aspect-ratio:1;display:grid;place-items:center;border-radius:13px;background:#2b475b;color:#84e0de;font-weight:900;font-size:3.1rem}
+    .tile:nth-child(3n+2){background:#30475b}.tile:nth-child(5){color:#ffc29d;border:2px solid #76d9d3}
+    .tile:not(.marked){background:repeating-linear-gradient(90deg,transparent,transparent 30%,#64818b33 31%,transparent 32%),#233d51}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:30px}
+    .feature{padding:18px;background:#173044bb;border:1px solid #486070;border-radius:16px}
+    .feature strong{display:block;margin:0 0 8px;color:#f7ffff}.feature span{display:block;color:#b4c7cf;font-size:.92rem;line-height:1.6}
+    .links{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0}
+    .links a{padding:12px 18px;border-radius:12px;border:1px solid #669397;color:#dcffff;text-decoration:none;font-weight:700}
+    .links a:focus-visible,.links a:hover{background:#24455d;outline:2px solid #8cece5;outline-offset:2px}
+    footer{border-top:1px solid #425d6a;padding-top:22px;margin-top:46px;font-size:.84rem;color:#94aab4;line-height:1.7}
+    a{color:#a6f4ee}h2{margin-top:44px;color:#f0fbfb;font-size:1.5rem}
+    @media (prefers-reduced-motion:no-preference){a{transition:background .18s ease}}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="label">iPhone · Board &amp; strategy</div>
+    <h1>Ultimate<br><em>Tic/Tac/Toe</em></h1>
+    <p class="lead">Nine little boards. One big win.</p>
+    <p>It's tic tac toe with a twist: every square you choose determines where your opponent plays next. Claim three small boards in a row to win the whole match.</p>
+    <div class="board" role="img" aria-label="Illustration of nine connected tic tac toe boards">
+      <div class="tile marked">X</div><div class="tile"></div><div class="tile marked">O</div>
+      <div class="tile"></div><div class="tile marked">X</div><div class="tile"></div>
+      <div class="tile"></div><div class="tile"></div><div class="tile marked">O</div>
+    </div>
+    <section class="features" aria-label="Game features">
+      <div class="feature"><strong>Play your way</strong><span>Go solo against Easy, Medium or Hard computer opponents, pass an iPhone between players, or face a friend in Game Center.</span></div>
+      <div class="feature"><strong>Learn and improve</strong><span>Interactive tutorial, completed-game replays, progress records and win streaks.</span></div>
+      <div class="feature"><strong>Make it yours</strong><span>Light and dark modes, optional sound and haptics, and a one-time purchase to remove banner ads.</span></div>
+    </section>
+    <h2>Support and privacy</h2>
+    <p>Ultimate Tic/Tac/Toe uses Apple Game Center for online games and Apple's StoreKit for purchases. The free version includes Google AdMob banner advertising with regional privacy consent choices.</p>
+    <nav class="links" aria-label="Game information">
+      <a href="https://github.com/killjoy00/Ultttt/blob/main/PRIVACY.md">Privacy policy</a>
+      <a href="https://github.com/killjoy00/Ultttt/issues">Support and feedback</a>
+    </nav>
+    <footer>
+      Ultimate Tic/Tac/Toe · An independent iPhone game<br>
+      Advertising sellers: <a href="/app-ads.txt">app-ads.txt</a>
+    </footer>
+  </main>
+</body>
+</html>
